@@ -1,90 +1,95 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>首页</title>
+	<title>首页</title>
+	<!-- <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}"> -->
+	<!-- <link rel="stylesheet" href="{{ url_for("static", filename="style.css") }}" type="text/css"> -->
+	<link rel="stylesheet" href="{{ url_for("static", filename="AmazeUI-2.4.2/assets/css/amazeui.css")}}"
+		type="text/css">
+	<link href="{{ url_for("static", filename="AmazeUI-2.4.2/assets/css/admin.css")}}" rel="stylesheet"
+		type="text/css" />
 
-		<!--<link href="../../AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />-->
-        <link rel="stylesheet" href="{{ url_for('static',filename='AmazeUI-2.4.2/assets/css/amazeui.css') }}">
-		<!--<link href="../../AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />-->
-        <link rel="stylesheet" href="{{ url_for('static',filename='AmazeUI-2.4.2/assets/css/admin.css') }}">
-		<!--<link href="../../basic/css/demo.css" rel="stylesheet" type="text/css" />-->
-        <link rel="stylesheet" href="{{ url_for('static',filename='basic/css/demo.css') }}">
-		<!--<link href="../../static/css/hmstyle.css" rel="stylesheet" type="text/css"/>-->
-        <link rel="stylesheet" href="{{ url_for('static',filename='css/hmstyle.css') }}">
-		<!--<link href="../../static/css/skin.css" rel="stylesheet" type="text/css" />-->
-        <link rel="stylesheet" href="{{ url_for('static',filename='css/skin.css') }}">
-		<!--<script src="../../AmazeUI-2.4.2/assets/js/jquery.min.js"  type="application/json"></script>-->
-        <script src="{{ url_for('static',filename='AmazeUI-2.4.2/assets/js/jquery.min.js') }}"></script>
-		<!--<script src="../../AmazeUI-2.4.2/assets/js/amazeui.min.js" type="application/json"></script>-->
-        <script src="{{ url_for('static',filename='AmazeUI-2.4.2/assets/js/amazeui.min.js') }}"></script>
+	<link href="{{ url_for("static", filename="basic/css/demo.css")}}" rel="stylesheet" type="text/css" />
 
-	</head>
+	<link href="{{ url_for("static", filename="css/hmstyle.css")}}" rel="stylesheet" type="text/css" />
+	<link href="{{ url_for("static", filename="css/skin.css")}}" rel="stylesheet" type="text/css" />
+	<script src="{{ url_for("static", filename="AmazeUI-2.4.2/assets/js/jquery.min.js")}}"></script>
+	<script src="{{ url_for("static", filename="AmazeUI-2.4.2/assets/js/amazeui.min.js") }}"></script>
+	<script src="{{ url_for("static", filename="js/jquery-3.4.1.min.js") }}"></script>
 
-	<body>
-		<div class="hmtop">
-			<!--顶部导航条 -->
-			<div class="am-container header">
-				<ul class="message-l">
-					<div class="topMessage">
-						<div class="menu-hd">
-							<a href="login.html" target="_top" class="h">亲，请登录</a>
-							<a href="#" target="_top">免费注册</a>
-						</div>
-					</div>
-				</ul>
-				<ul class="message-r">
-					<div class="topMessage home">
-						<div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
-					</div>
-					<div class="topMessage my-shangcheng">
-						<div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
-					</div>
-					<div class="topMessage mini-cart">
-						<div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
-					</div>
-					<div class="topMessage favorite">
-						<div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
-				</div>
-                </ul>
+</head>
 
-
-
-				<!--悬浮搜索框-->
-
-				<div class="nav white">
-					<div class="logo"><img src="../../static/images/logo.png" /></div>
-					<div class="logoBig">
-						<li><img src="../../static/images/logobig.png" /></li>
-					</div>
-
-					<div class="search-bar pr">
-						<a name="index_none_header_sysc" href="#"></a>
-						<form>
-							<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
-							<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
-						</form>
+<body>
+	<div class="hmtop">
+		<!--顶部导航条 -->
+		<div class="am-container header">
+			<ul class="message-l">
+				<div class="topMessage">
+					<div class="menu-hd">
+						<a href="/login" target="_top" class="h">亲，请登录</a>
+						<a href="/reg" target="_top">免费注册</a>
 					</div>
 				</div>
+			</ul>
+			<ul class="message-r">
+				<div class="topMessage home">
+					<div class="menu-hd"><a href="/" target="_top" class="h">商城首页</a></div>
+				</div>
+				<div class="topMessage my-shangcheng">
+					<div class="menu-hd MyShangcheng"><a href="/user_center" target="_top"><i
+								class="am-icon-user am-icon-fw"></i>个人中心</a></div>
+				</div>
+				<div class="topMessage mini-cart">
+					<div class="menu-hd"><a id="mc-menu-hd" href="/shopcart" target="_top"><i
+								class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum"
+								class="h">0</strong></a></div>
+				</div>
+				<div class="topMessage favorite">
+					<div class="menu-hd"><a href="#" target="_top"><i
+								class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
+			</ul>
+		</div>
 
-				<div class="clear"></div>
-			</div>
-			<div class="banner">
-                      <!--轮播 -->
-						<div class="am-slider am-slider-default scoll" data-am-flexslider id="demo-slider-0">
-							<ul class="am-slides">
-								<li class="banner1"><a href="introduction.html"><img src="../../static/images/ad1.jpg" /></a></li>
-								<li class="banner2"><a><img src="../../static/images/ad2.jpg" /></a></li>
-								<li class="banner3"><a><img src="../../static/images/ad3.jpg" /></a></li>
-								<li class="banner4"><a><img src="../../static/images/ad4.jpg" /></a></li>
+		<!--悬浮搜索框-->
 
-							</ul>
-						</div>
-						<div class="clear"></div>	
+		<div class="nav white">
+			<div class="logo"><img src="{{ url_for("static", filename="images/logo.png")}}" alt="" /></div>
+			<div class="logoBig">
+				<li><img src="{{ url_for("static", filename="images/logobig.png")}}" alt="" /></li>
 			</div>
+
+			<div class="search-bar pr">
+				<a name="index_none_header_sysc" href="#"></a>
+				<form>
+					<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索"
+						autocomplete="off">
+					<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
+				</form>
+			</div>
+		</div>
+
+		<div class="clear"></div>
+	</div>
+	<div class="banner">
+		<!--轮播 -->
+		<div class="am-slider am-slider-default scoll" data-am-flexslider id="demo-slider-0">
+			<ul class="am-slides">
+				<li class="banner1"><a href="introduction.html"><img
+							src="{{ url_for("static", filename="images/ad1.jpg")}}" alt="" /></a></li>
+				<li class="banner2"><a><img src="{{ url_for("static", filename="images/ad2.jpg")}}" alt="" /></a></li>
+				<li class="banner3"><a><img src="{{ url_for("static", filename="images/ad3.jpg")}}" alt="" /></a></li>
+				<li class="banner4"><a><img src="{{ url_for("static", filename="images/ad4.jpg")}}" alt="" /></a></li>
+
+			</ul>
+		</div>
+		<div class="clear"></div>
+	</div>
 			<div class="shopNav">
 				<div class="slideall">
 					
