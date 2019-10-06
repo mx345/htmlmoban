@@ -11,9 +11,11 @@
 		<meta http-equiv="Cache-Control" content="no-siteapp" />
 
         <link rel="stylesheet" href="{{ url_for('static',filename='AmazeUI-2.4.2/assets/css/amazeui.css') }}">
-		<!--<link rel="stylesheet" href="../AmazeUI-2.4.2/assets/css/amazeui.css" />-->
-        <link rel="stylesheet" href="{{ url_for('static',filename='css/dlstyle.css') }}">
-		<!--<link href="../css/dlstyle.css" rel="stylesheet" type="text/css">-->
+		
+		<link rel="stylesheet" href="{{ url_for('static',filename='css/dlstyle.css') }}">
+		<script src="{{ url_for("static", filename="js/jquery-3.4.1.min.js") }}"></script>
+		<script src="{{ url_for("static", filename="js/common.js") }}"></script>
+		
 	</head>
 
 	<body>
@@ -33,16 +35,16 @@
 							<div class="clear"></div>
 						
 						<div class="login-form">
-						  <form>
+						  <form action="/login" method="POST">
 							   <div class="user-name">
 								    <label for="user"><i class="am-icon-user"></i></label>
-								    <input type="text" name="" id="user" placeholder="邮箱/手机/用户名">
+								    <input type="text" name="uname" id="user" placeholder="邮箱/手机/用户名"><span id="uname_tips"></span>
                  </div>
                  <div class="user-pass">
 								    <label for="password"><i class="am-icon-lock"></i></label>
-								    <input type="password" name="" id="password" placeholder="请输入密码">
+								    <input type="password" name="password" id="password" placeholder="请输入密码"><span id="password_tips"></span>
                  </div>
-              </form>
+             
            </div>
             
             <div class="login-links">
@@ -50,10 +52,12 @@
 								<a href="#" class="am-fr">忘记密码</a>
 								<a href="register.html" class="zcnext am-fr am-btn-default">注册</a>
 								<br />
+							
             </div>
 								<div class="am-cf">
 									<input type="submit" name="" value="登 录" class="am-btn am-btn-primary am-btn-sm">
 								</div>
+						</form>
 						<div class="partner">		
 								<h3>合作账号</h3>
 							<div class="am-btn-group">
