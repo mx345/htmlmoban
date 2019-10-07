@@ -7,13 +7,24 @@
 
 		<title>地址管理</title>
 
-		<link href="../AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
-		<link href="../AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
+		<!--<link href="../AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">	-->
+		<link rel="stylesheet" href="{{ url_for("static", filename="AmazeUI-2.4.2/assets/css/admin.css")}}"
+		type="text/css">
+		<!--<link href="../AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">-->
+		<link rel="stylesheet" href="{{ url_for("static", filename="AmazeUI-2.4.2/assets/css/amazeui.css")}}"
+		type="text/css">
 
-		<link href="../css/personal.css" rel="stylesheet" type="text/css">
-		<link href="../css/addstyle.css" rel="stylesheet" type="text/css">
-		<script src="../AmazeUI-2.4.2/assets/js/jquery.min.js" type="text/javascript"></script>
-		<script src="../AmazeUI-2.4.2/assets/js/amazeui.js"></script>
+		<!--<link href="../css/personal.css" rel="stylesheet" type="text/css">-->
+		<link rel="stylesheet" href="{{ url_for("static", filename="css/personal.css")}}"
+		type="text/css">
+		<!--<link href="../css/addstyle.css" rel="stylesheet" type="text/css">-->
+		<link rel="stylesheet" href="{{ url_for("static", filename="css/addstyle.css")}}"
+		type="text/css">
+		<!--<script src="../AmazeUI-2.4.2/assets/js/jquery.min.js" type="text/javascript"></script>-->
+		<script src="{{ url_for("static", filename="AmazeUI-2.4.2/assets/js/jquery.min.js") }}"></script>
+
+		<script src="{{ url_for("static", filename="AmazeUI-2.4.2/assets/js/amazeui.js") }}"></script>
+
 
 	</head>
 
@@ -51,7 +62,7 @@
 
 						<div class="nav white">
 							<div class="logoBig">
-								<li><img src="../images/logobig.png" /></li>
+								<li><img src="../../static/images/logobig.png" /></li>
 							</div>
 
 							<div class="search-bar pr">

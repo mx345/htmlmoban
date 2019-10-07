@@ -64,57 +64,57 @@ $(function() {
         })
     });
     var password
-    $("#upass").blur(function()
+    $("#password").blur(function()
     {
        password = $(this).val()
     
       if(password.length<6 ||password.length >15)
       {
-        $("#upass_tips").css("color","red")
+          $("#password_tips").css("color","red")
         
-        $("#upass_tips").text("密码必须大于5，小于15！")
+          $("#password_tips").text("密码必须大于5，小于15！")
       }
       else{
-        $("#upass_tips").css("color","green")
-        $("#upass_tips").css("font-width","bold")
-        $("#upass_tips").text("ok")  
+          $("#password_tips").css("color","green")
+          $("#password_tips").css("font-width","bold")
+          $("#password_tips").text("ok")  
       }
     })
-    $("#upass2").blur(function()
+    $("#password2").blur(function()
     {   
         var password2= $(this).val()
         console.log(password2)
         console.log(password)
         if (password===password2)
         {   
-            $("#upass2_tips").css("color","green")
-            $("#upass2_tips").css("font-width","bold")
-            $("#upass2_tips").text("ok")  
+            $("#password_tips2").css("color","green")
+            $("#password_tips2").css("font-width","bold")
+            $("#password_tips2").text("ok")  
 
            
         }
         else{
-            $("#upass2_tips").css("color","red")
-            $("#upass2_tips").text("两次输入密码不一致！")
+            $("#password_tips2").css("color","red")
+            $("#password_tips2").text("两次输入密码不一致！")
         }
 
 
     })
-    $("#phone").blur(function()
+    $("#uname1").blur(function()
     {   
         var phone= $(this).val()
-       
+        console.log(phone)
         if(/1\d{10}/.test(phone))
         {   
-            $("#phone_tips").css("color","green")
-            $("#phone_tips").css("font-width","bold")
-            $("#phone_tips").text("ok")  
+            $("#uname_tips1").css("color","green")
+            $("#uname_tips1").css("font-width","bold")
+            $("#uname_tips1").text("ok")  
 
            
         }
         else{
-            $("#phone_tips").css("color","red")
-            $("#phone_tips").text("手机号格式错误")
+            $("#uname_tips1").css("color","red")
+            $("#uname_tips1").text("手机号格式错误")
         }
 
 

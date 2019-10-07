@@ -1,7 +1,7 @@
 CREATE TABLE sp_user(
     uid int unsigned AUTO_INCREMENT,
     uname varchar(320) NOT NULL UNIQUE,
-    upass char(32) NOT NULL,  -- md5¼ÓÃÜ
+    upass char(32) NOT NULL,  -- md5ï¿½ï¿½ï¿½ï¿½
     reg_time datetime NOT NULL,
     last_login_time datetime NOT NULL,
     priv enum ('1', '2') NOT NULL DEFAULT '1',  
@@ -9,6 +9,9 @@ CREATE TABLE sp_user(
     PRIMARY KEY (uid)
 ) ENGINE=InnoDB AUTO_INCREMENT=1001 DEFAULT CHARSET=utf8;
 
--- ÄÚÖÃ¹ÜÀíÔ±ÕË»§
-INSERT INTO mb_user values (DEFAULT, 'root', md5('abc123'), 
+-- ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ï¿½Ô±ï¿½Ë»ï¿½
+INSERT INTO sp_user values (DEFAULT, 'root', md5('abc123'), 
+now(), now(), 2, 1);
+
+INSERT INTO sp_user values (DEFAULT, '17371290629', md5('abc123'), 
 now(), now(), 2, 1);

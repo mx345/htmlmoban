@@ -6,15 +6,24 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
 
 		<title>优惠券</title>
+		<!--<link href="../AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">-->
+        <link href="{{ url_for("static", filename="AmazeUI-2.4.2/assets/css/admin.css")}}" rel="stylesheet"
+		type="text/css" />
 
-		<link href="../AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
-		<link href="../AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
+		<!--<link href="../AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">-->
+        <link href="{{ url_for("static", filename="AmazeUI-2.4.2/assets/css/amazeui.css")}}" rel="stylesheet"
+		type="text/css" />
 
-		<link href="../css/personal.css" rel="stylesheet" type="text/css">
-		<link href="../css/cpstyle.css" rel="stylesheet" type="text/css">
-			
-		<script src="../AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
-		<script src="../AmazeUI-2.4.2/assets/js/amazeui.js"></script>
+		<!--<link href="../css/personal.css" rel="stylesheet" type="text/css">-->
+        <link href="{{ url_for("static", filename="css/personal.css")}}" rel="stylesheet"
+		type="text/css" />
+		<!--<link href="../css/cpstyle.css" rel="stylesheet" type="text/css">-->
+        <link href="{{ url_for("static", filename="css/cpstyle.css")}}" rel="stylesheet"
+		type="text/css" />
+
+     <script src="{{ url_for("static", filename="AmazeUI-2.4.2/assets/js/jquery.min.js") }}"></script>
+		<script src="{{ url_for("static", filename="AmazeUI-2.4.2/assets/js/amazeui.js") }}"></script>
+
 	</head>
 
 	<body>
@@ -51,7 +60,7 @@
 
 						<div class="nav white">
 							<div class="logoBig">
-								<li><img src="../images/logobig.png" /></li>
+								<li><img src="../../static/images/logobig.png" /></li>
 							</div>
 
 							<div class="search-bar pr">
@@ -214,7 +223,7 @@
 												
 												<li class="td td-usestatus ">
 													<div class="item-usestatus ">
-														<span><img src="../images/gift_stamp_31.png"</span>
+														<span><img src="../../static/images/gift_stamp_31.png"</span>
 													</div>
 												</li>												
 											</div>
@@ -255,7 +264,7 @@
 												
 												<li class="td td-usestatus ">
 													<div class="item-usestatus ">
-														<span><img src="../images/gift_stamp_21.png"</span>
+														<span><img src="../../static/images/gift_stamp_21.png"</span>
 													</div>
 												</li>
 											</div>
