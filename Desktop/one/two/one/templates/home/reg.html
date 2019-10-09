@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>注册</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+		<link rel="stylesheet" href="{{ url_for("static", filename="AmazeUI-2.4.2/assets/css/amazeui.min.css")}}" />
+		<link href="{{ url_for("static", filename="css/dlstyle.css")}}" rel="stylesheet" type="text/css">
+		<script src="{{ url_for("static", filename="AmazeUI-2.4.2/assets/js/jquery.min.js")}}"></script> 
+		<script src="{{ url_for("static", filename="AmazeUI-2.4.2/assets/js/amazeui.min.js")}}"></script>
+	
+		<script src="{{ url_for("static", filename="js/common.js") }}"></script>
+		<!-- <script>
+
+			window.onload = function () {
+				document.forms[0].onsubmit = function () {
+					var uname = document.getElementsByName("uname")[0].value
+				
+					var PASSA = document.getElementsByName("password")[0].value
+					
+					
+					//JS校验表单数据的合法性
+					if (uname.replace(/(^\s*)|(\s*$)/g, "") === "") {
+						document.getElementById("uname_tips").innerText = "用户名不能为空！";
+						document.getElementById("uname_tips").style.color = "red";
+						return false;
+
+						//校验密码的合法
+					}
+					
+					if (/[\u4E00-\u9FFF]/.test(uname)) {
+
+						document.getElementById("uname_tips").innerText = "不能为中文";
+						document.getElementById("uname_tips").style.color = "red";
+						return false;
+					}
+					if (uname.length < 4 || uname.length > 20) {
+						document.getElementById("uname_tips").innerText = "用户名最少为4字符！最大为20字符";
+						document.getElementById("uname_tips").style.color = "red";
+						
+						return false;
+					}
+					if (!/[a-zA-Z0-9_]+$/.test(uname)) {
+						document.getElementById("uname_tips").innerText = "用户名只能包含字母数字下划线";
+						document.getElementById("uname_tips").style.color = "red";
+					
+						return false;
+					}
+				
+					 PASSA = document.getElementsByName("password")[0].value
+					 alert(PASSA)
+					if (!/^[0-9]{1}([a-zA-Z0-9]|[._]){6,15}$/.test(PASSA)) {
+						document.getElementById("password_tips").innerText = "密码格式错误";
+						document.getElementById("password_tips").style.color = "red";
+						return false;
+					};
+					
+					
+					var PASSA1 = document.getElementsByName("password2")[0].value
+					if (PASSA !== PASSA1) {
+						document.getElementById("password_tips2").innerText = "密码不一致错误";
+						document.getElementById("password_tips2").style.color = "red";
+						return false;
+					};
+
+					var phone1 = document.getElementsByName("phone")[0].value
+					if (!/^[1][3,4,5,7,8][0-9]{9}$/.test(phone1)) {
+						document.getElementById("phone_tips").innerText = "手机号不正确";
+						document.getElementById("phone_tips").style.color = "red";
+						return false;
+					}
+				
+				   else{
+						document.getElementById("uname_tips").innerText = "ok";
+						document.getElementById("uname_tips").style.color = "green";
+						document.getElementById("uname_tips").style.display = "none";
+						return true;
+				  }
+					// var email1 = document.getElementById("uname").value
+					// if (!/^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/.test(email1)) {
+					// 	document.getElementById("uname_tips").innerText = "邮箱不正确";
+					// 	document.getElementById("uname_tips").style.color = "red";
+					// 	return false;
+					// };
+
+
+
+				};
+				document.forms[1].onsubmit = function () {
+					var uname = document.getElementsByName("uname1")[0].value
+					// alert(uname)
+					if (uname.replace(/(^\s*)|(\s*$)/g, "") === "") {
+						document.getElementById("uname_tips1").innerText = "用户名不能为空！";
+						document.getElementById("uname_tips1").style.color = "red";
+						return false;
+
+						//校验密码的合法
+					}
+					alert(uname)
+					if (!/^[1][3,4,5,7,8][0-9]{9}$/.test(uname)) {
+						document.getElementById("uname_tips1").innerText = "手机号不正确";
+						document.getElementById("uname_tips1").style.color = "red";
+						return false;
+					}
+					var  PASSA = document.getElementsByName("password3")[0].value
+					if (!/^[0-9]{1}([a-zA-Z0-9]|[._]){6,15}$/.test(PASSA)) {
+						document.getElementById("password_tips3").innerText = "密码格式错误";
+						document.getElementById("password_tips3").style.color = "red";
+						return false;
+					};
+
+
+					var PASSA1 = document.getElementsByName("password4")[0].value
+					if (PASSA !== PASSA1) {
+						document.getElementById("password_tips4").innerText = "密码不一致错误";
+						document.getElementById("password_tips4").style.color = "red";
+						return false;
+					}
+					else {
+						document.getElementById("uname_tips1").innerText = "ok";
+						document.getElementById("uname_tips1").style.color = "green";
+						document.getElementById("uname_tips1").style.display = "none";
+						return true;
+					};
+					
+				}
+			}
+
+
+		</script> -->
+	</head>
+
+	<body>
+
+		<div class="login-boxtitle">
+			<a href="/"><img alt="" src="{{ url_for("static", filename="images/logobig.png")}}" alt=""/></a>
+		</div>
+
+		<div class="res-banner">
+			<div class="res-main">
+				<div class="login-banner-bg"><span></span><img src="{{ url_for("static", filename="images/big.jpg")}}" alt="" /></div>
+				<div class="login-box">
+
+						<div class="am-tabs" id="doc-my-tabs">
+							<ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
+								<li class="am-active"><a href="">用户注册</a></li>
+								<!-- <li><a href="">手机号注册</a></li> -->
+							</ul>
+
+							<div class="am-tabs-bd">
+								<div class="am-tab-panel am-active">
+									<form action="/reg" method="POST" >
+										
+							   
+					<div class="user-email">
+						<label for="email"><i class="am-icon-envelope-o"></i></label>
+						<input type="text" name="uname" id="uname" placeholder="请输入邮箱或手机号">
+					
+					</div>
+
+					<span id="uname_tips"></span>
+					<div class="verification">
+						<label for="code"><i class="am-icon-code-fork"></i></label>
+						<input type="tel" name="code" id="code" placeholder="请输入验证码">
+						<a class="btn" href="javascript:void(0);" onclick="sendMobileCode();" id="sendMobileCode">
+							<span id="dyMobileButton">获取</span></a>
+					</div>
+                 <div class="user-pass">
+								    <label for="password"><i class="am-icon-lock"></i></label>
+								    <input type="password" name="password" id="password" placeholder="设置密码">
+				 </div>
+				<span id="password_tips"></span>
+                 <div class="user-pass">
+								    <label for="passwordRepeat"><i class="am-icon-lock"></i></label>
+								    <input type="password" name="password2" id="password2" placeholder="确认密码">
+				   </div>	
+				<span id="password_tips2"></span>
+									
+			
+                              
+								
+										<div class="am-cf">
+											<input type="submit" name="" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl">
+										</div>
+						</form>
+						<div class="login-links">
+							<label for="reader-me">
+								<input id="reader-me" type="checkbox"> 点击表示您同意商城《服务协议》
+							</label>
+						</div>
+						</div>
+						
+								
+
+						<div class="am-tab-panel">
+									<form method="POST" action="/reg1">
+                 <div class="user-phone">
+								    <label for="phone"><i class="am-icon-mobile-phone am-icon-md"></i></label>
+								    <input type="text" name="uname1" id="uname1" placeholder="请输入手机号">
+				 </div>
+				<span id="uname_tips1"></span>
+										<div class="verification">
+											<label for="code"><i class="am-icon-code-fork"></i></label>
+											<input type="tel" name="code" id="code" placeholder="请输入验证码">
+											<a class="btn" href="javascript:void(0);" onclick="sendMobileCode();" id="sendMobileCode">
+												<span id="dyMobileButton">获取</span></a>
+										</div>
+                 <div class="user-pass">
+								    <label for="password"><i class="am-icon-lock"></i></label>
+								    <input type="password" name="password3" id="password3" placeholder="设置密码">
+				 </div>
+				 <span id="password_tips3"></span>
+                 <div class="user-pass">
+								    <label for="passwordRepeat"><i class="am-icon-lock"></i></label>
+								    <input type="password" name="password4" id="password4" placeholder="确认密码">
+				 </div>
+				<span id="password_tips4"></span>
+									
+								
+										<div class="am-cf">
+											<input type="submit" name="" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl">
+										</div>
+								</form>
+								<div class="login-links">
+									<label for="reader-me">
+										<input id="reader-me" type="checkbox"> 点击表示您同意商城《服务协议》
+									</label>
+								</div>
+									<hr>
+								</div> -->
+
+								 <script>
+									$(function() {
+										var a = $('#doc-my-tabs').tabs();
+										
+									  })
+								</script>
+
+							 </div>
+						</div>
+
+				</div>
+			</div>
+			
+					<div class="footer ">
+						<div class="footer-hd ">
+							<p>
+								<a href="# ">恒望科技</a>
+								<b>|</b>
+								<a href="# ">商城首页</a>
+								<b>|</b>
+								<a href="# ">支付宝</a>
+								<b>|</b>
+								<a href="# ">物流</a>
+							</p>
+						</div>
+						<div class="footer-bd ">
+							<p>
+								<a href="# ">关于恒望</a>
+								<a href="# ">合作伙伴</a>
+								<a href="# ">联系我们</a>
+								<a href="# ">网站地图</a>
+								<em>© 2015-2025 Hengwang.com 版权所有. 更多模板 <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></em>
+							</p>
+						</div>
+					</div>
+	</body>
+
+</html>
