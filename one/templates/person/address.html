@@ -24,6 +24,21 @@
 		<script src="{{ url_for("static", filename="AmazeUI-2.4.2/assets/js/jquery.min.js") }}"></script>
 
 		<script src="{{ url_for("static", filename="AmazeUI-2.4.2/assets/js/amazeui.js") }}"></script>
+		<script src="../../static/js/jquery-3.4.1.min.js"></script>
+		<script>
+			$(document).ready(function () {
+				$("#one_a").click(function () {
+			
+					$("#one").remove();
+				});
+				$("#two_a").click(function () {
+					$("#two").remove();
+				});
+			$("three_a").click(function () {
+					$("#three").remove();
+				});
+			});
+		</script>
 
 
 	</head>
@@ -84,7 +99,7 @@
 			<div class="long-title"><span class="all-goods">全部分类</span></div>
 			<div class="nav-cont">
 				<ul>
-					<li class="index"><a href="#">首页</a></li>
+					<li class="index"><a href="/">首页</a></li>
 					<li class="qc"><a href="#">闪购</a></li>
 					<li class="qc"><a href="#">限时抢</a></li>
 					<li class="qc"><a href="#">团购</a></li>
@@ -108,15 +123,38 @@
 							<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">地址管理</strong> / <small>Address&nbsp;list</small></div>
 						</div>
 						<hr/>
+						{% if session.get("user_info") %}
+						{%for i in res%}
 						<ul class="am-avg-sm-1 am-avg-md-3 am-thumbnails">
 
-							<li class="user-addresslist defaultAddr">
+							<li class="user-addresslist defaultAddr" id="one">
 								<span class="new-option-r"><i class="am-icon-check-circle"></i>默认地址</span>
 								<p class="new-tit new-p-re">
+									<span class="new-txt">{{i[2]}}</span>
+									<span class="new-txt-rd2">{{i[3]}}</span>
+								</p>
+								<div class="new-mu_l2a new-p-re1" >
+									<p class="new-mu_l2cw">
+										<span class="title">地址：</span>
+										<span class="province">{{i[4]}}</span>
+										<!-- <span class="city">武汉</span>市
+										<span class="dist">洪山</span>区 -->
+										<span class="street">{{i[5]}}</span></p>
+								</div>
+								 <div class="new-addr-btn">
+									<a href="/compile1"><i class="am-icon-edit"></i>编辑</a>
+									<span class="new-addr-bar">|</span>
+									<a id=one_a><i class="am-icon-trash"></i>删除</a>
+								</div>
+							</li> 
+<!-- 
+							<li class="user-addresslist" id="two">
+								<span class="new-option-r"><i class="am-icon-check-circle"></i>设为默认</span>
+								<p class="new-tit new-p-re">
 									<span class="new-txt">小叮当</span>
 									<span class="new-txt-rd2">159****1622</span>
 								</p>
-								<div class="new-mu_l2a new-p-re">
+								<div class="new-mu_l2a new-p-re" id="sh">
 									<p class="new-mu_l2cw">
 										<span class="title">地址：</span>
 										<span class="province">湖北</span>省
@@ -127,11 +165,10 @@
 								<div class="new-addr-btn">
 									<a href="#"><i class="am-icon-edit"></i>编辑</a>
 									<span class="new-addr-bar">|</span>
-									<a href="javascript:void(0);" onclick="delClick(this);"><i class="am-icon-trash"></i>删除</a>
+									<a id="two_a" href="javascript:void(0);"><i class="am-icon-trash"></i>删除</a>
 								</div>
 							</li>
-
-							<li class="user-addresslist">
+							<li class="user-addresslist" id="three">
 								<span class="new-option-r"><i class="am-icon-check-circle"></i>设为默认</span>
 								<p class="new-tit new-p-re">
 									<span class="new-txt">小叮当</span>
@@ -143,35 +180,17 @@
 										<span class="province">湖北</span>省
 										<span class="city">武汉</span>市
 										<span class="dist">洪山</span>区
-										<span class="street">雄楚大道666号(中南财经政法大学)</span></p>
+										<span class="street">fdsafadf (中南财经政法大学)</span></p>
 								</div>
 								<div class="new-addr-btn">
 									<a href="#"><i class="am-icon-edit"></i>编辑</a>
 									<span class="new-addr-bar">|</span>
-									<a href="javascript:void(0);" onclick="delClick(this);"><i class="am-icon-trash"></i>删除</a>
+									<a id="three_a"><i class="am-icon-trash"></i>删除</a>
 								</div>
-							</li>
-							<li class="user-addresslist">
-								<span class="new-option-r"><i class="am-icon-check-circle"></i>设为默认</span>
-								<p class="new-tit new-p-re">
-									<span class="new-txt">小叮当</span>
-									<span class="new-txt-rd2">159****1622</span>
-								</p>
-								<div class="new-mu_l2a new-p-re">
-									<p class="new-mu_l2cw">
-										<span class="title">地址：</span>
-										<span class="province">湖北</span>省
-										<span class="city">武汉</span>市
-										<span class="dist">洪山</span>区
-										<span class="street">雄楚大道666号(中南财经政法大学)</span></p>
-								</div>
-								<div class="new-addr-btn">
-									<a href="#"><i class="am-icon-edit"></i>编辑</a>
-									<span class="new-addr-bar">|</span>
-									<a href="javascript:void(0);" onclick="delClick(this);"><i class="am-icon-trash"></i>删除</a>
-								</div>
-							</li>
+							</li> -->
 						</ul>
+						{% endfor %}
+						{% endif %}
 						<div class="clear"></div>
 						<a class="new-abtn-type" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0}">添加新地址</a>
 						<!--例子-->
@@ -186,35 +205,37 @@
 								<hr/>
 
 								<div class="am-u-md-12 am-u-lg-8" style="margin-top: 20px;">
-									<form class="am-form am-form-horizontal">
+									<form class="am-form am-form-horizontal" action="/address" method="POST">
 
 										<div class="am-form-group">
-											<label for="user-name" class="am-form-label">收货人</label>
+											<label for="user-name" class="am-form-label" >收货人</label>
 											<div class="am-form-content">
-												<input type="text" id="user-name" placeholder="收货人">
+												<input type="text" name="dname" id="user-name" placeholder="收货人">
 											</div>
 										</div>
 
 										<div class="am-form-group">
 											<label for="user-phone" class="am-form-label">手机号码</label>
 											<div class="am-form-content">
-												<input id="user-phone" placeholder="手机号必填" type="email">
+												<input id="user-phone" name="dphone" placeholder="手机号必填" type="tel">
 											</div>
 										</div>
 										<div class="am-form-group">
 											<label for="user-address" class="am-form-label">所在地</label>
 											<div class="am-form-content address">
-												<select data-am-selected>
-													<option value="a">浙江省</option>
-													<option value="b" selected>湖北省</option>
+												 
+												<select data-am-selected name="sheng" >
+													<option value="浙江省">浙江省</option>
+													<option value="湖北省" selected >湖北省</option>
 												</select>
-												<select data-am-selected>
-													<option value="a">温州市</option>
-													<option value="b" selected>武汉市</option>
+											
+												<select data-am-selected name="shi">
+													<option value="温州市">温州市</option>
+													<option value="武汉市" selected>武汉市</option>
 												</select>
-												<select data-am-selected>
-													<option value="a">瑞安区</option>
-													<option value="b" selected>洪山区</option>
+												<select data-am-selected name="qu" id>
+													<option value="瑞安区">瑞安区</option>
+													<option value="洪山区" selected>洪山区</option>
 												</select>
 											</div>
 										</div>
@@ -222,14 +243,14 @@
 										<div class="am-form-group">
 											<label for="user-intro" class="am-form-label">详细地址</label>
 											<div class="am-form-content">
-												<textarea class="" rows="3" id="user-intro" placeholder="输入详细地址"></textarea>
+												<textarea class="" rows="3" id="user-intro" name="daddress" placeholder="输入详细地址"></textarea>
 												<small>100字以内写出你的详细地址...</small>
 											</div>
 										</div>
 
 										<div class="am-form-group">
 											<div class="am-u-sm-9 am-u-sm-push-3">
-												<a class="am-btn am-btn-danger">保存</a>
+												<input class="am-btn am-btn-danger" type="submit" value="保存">
 												<a href="javascript: void(0)" class="am-close am-btn am-btn-danger" data-am-modal-close>取消</a>
 											</div>
 										</div>
@@ -241,7 +262,85 @@
 						</div>
 
 					</div>
+<script src="{{ url_for("static", filename="js/jquery.min.js")}}"></script>
+<script src="{{ url_for("static", filename="js/AllSchool.js")}}"></script>
+<script>
+	window.onload = function () {
+		var provinceArray = "";
+		var provicneSelectStr = "";
+		for (var i = 0, len = province.length; i < len; i++) {
+			provinceArray = province[i];
+			provicneSelectStr = provicneSelectStr + "<option value='" + provinceArray[0] + "'>" + provinceArray[1] + "</option>"
+		}
+		$("#province").html(provicneSelectStr);
 
+		var selectCity = $("#province").val();
+		var citylist = city[selectCity];
+		var cityArray = "";
+		var citySelectStr = "";
+		for (var i = 0, len = citylist.length; i < len; i++) {
+			cityArray = citylist[i];
+			citySelectStr = citySelectStr + "<option value='" + cityArray[0] + "'>" + cityArray[1] + "</option>"
+		}
+		$("#city").html(citySelectStr);
+
+		var selectschool = $("#city").val();
+		var schoolUlStr = "";
+		var schoolListStr = allschool[selectschool];
+		for (var i = 0, len = schoolListStr.length; i < len; i++) {
+			schoolUlStr = schoolUlStr + "<option >" + schoolListStr[i][2] + "</option>";
+		}
+		schoolUlStr = schoolUlStr + "<option value='999'>其它</option>";
+		$("#school").html(schoolUlStr);
+		//省切换事件
+		$("#province").change(function () {
+			var selectCity = $("#province").val();
+			var citylist = city[selectCity];
+			var cityArray = "";
+			var citySelectStr = "";
+			if (citylist != null) {
+				for (var i = 0, len = citylist.length; i < len; i++) {
+					cityArray = citylist[i];
+					citySelectStr = citySelectStr + "<option value='" + cityArray[0] + "'>" + cityArray[1] + "</option>"
+				}
+			}
+
+			$("#city").html(citySelectStr);
+			$("#school1").show();
+			$("#school2").hide();
+			var selectschool = $("#city").val();
+			var schoolUlStr = "";
+			var schoolListStr = allschool[selectschool];
+			for (var i = 0, len = schoolListStr.length; i < len; i++) {
+				schoolUlStr = schoolUlStr + "<option >" + schoolListStr[i][2] + "</option>";
+			}
+			schoolUlStr = schoolUlStr + "<option value='999'>其它</option>";
+			$("#school").html(schoolUlStr);
+		});
+		//切换城市事件
+		$("#city").change(function () {
+			$("#school1").show();
+			$("#school2").hide();
+			var selectschool = $("#city").val();
+			var schoolUlStr = "";
+			var schoolListStr = allschool[selectschool];
+			for (var i = 0, len = schoolListStr.length; i < len; i++) {
+				schoolUlStr = schoolUlStr + "<option >" + schoolListStr[i][2] + "</option>";
+			}
+			schoolUlStr = schoolUlStr + "<option value='999'>其它</option>";
+			$("#school").html(schoolUlStr);
+		});
+		$("#school").change(function () {
+			if ($("#school").val() == "999") {
+				$("#school1").hide();
+				$("#school2").show();
+			}
+		});
+		$("#second").show();
+		$("#restart").css("backgorund", "url('assets/images/chongxintijiao.jpg') no-repeat");
+	}
+
+</script>
 					<script type="text/javascript">
 						$(document).ready(function() {							
 							$(".new-option-r").click(function() {

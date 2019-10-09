@@ -48,13 +48,18 @@
 			<ul class="message-l">
 				<div class="topMessage">
 					<div class="menu-hd">
-						{% if uname %}
-					<a id="logout" href="javascript:;">临时走开</a>
+						{% if session.get("user_info") %}
+					 	<a id="logout" href="javascript:;">临时走开</a>
 						{% else %}
-						
 						<a href="/login" target="_top" class="h">亲，请登录</a>
 						<a href="/reg" target="_top">免费注册</a>
 						{% endif %}
+						
+						{% if session.get("user_info")["uname"]=="root3" %}
+						<a href="/login" target="_top" class="h">删除用户</a>
+						<a href="/login" target="_top" class="h">查看用户信息</a>
+						{% endif %}
+
 					</div>
 				</div>
 			</ul>

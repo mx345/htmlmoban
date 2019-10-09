@@ -1,3 +1,5 @@
+
+#用户注册表
 CREATE TABLE sp_user(
     uid int unsigned AUTO_INCREMENT,
     uname varchar(320) NOT NULL UNIQUE,
@@ -10,8 +12,52 @@ CREATE TABLE sp_user(
 ) ENGINE=InnoDB AUTO_INCREMENT=1001 DEFAULT CHARSET=utf8;
 
 -- ���ù���Ա�˻�
-INSERT INTO sp_user values (DEFAULT, 'root', md5('abc123'), 
+INSERT INTO sp_user values (DEFAULT, 'root', md5('root12345678'), 
 now(), now(), 2, 1);
 
 INSERT INTO sp_user values (DEFAULT, '17371290629', md5('abc123'), 
 now(), now(), 2, 1);
+
+#个人地址表
+CREATE TABLE sp_address (
+    mid int unsigned AUTO_INCREMENT,
+    uid int unsigned,
+    dname  varchar(320) NOT NULL UNIQUE,
+    phone char(11) NOT NULL, 
+    address varchar(30) NOT NULL,
+    daddress varchar(320) NOT NULL,
+    PRIMARY KEY (mid),
+    FOREIGN KEY (uid) REFERENCES sp_user (uid)
+) ENGINE=InnoDB AUTO_INCREMENT=1001 DEFAULT CHARSET=utf8;
+
+#个人详细表
+CREATE  TABLE  user_information(
+  
+  uid  int UNSIGNED AUTO_INCREMENT ,
+  ni_nmae VARCHAR(20) NOT NULL ,
+  real_name VARCHAR(20) NOT NULL ,
+  sex char(4) ,
+  Birth_Date varchar(12),
+  phone char(11) NOT NULL,
+  email VARCHAR(320),
+  PRIMARY KEY (uid)
+  
+)ENGINE =InnoDB AUTO_INCREMENT=1001 DEFAULT CHARSET=utf8;
+
+
+#商品分类表
+
+CREATE TABLE category(
+ cid INT PRIMARY KEY,
+ cname VARCHAR(50)
+);
+#商品信息表
+CREATE TABLE products(
+    pid INT PRIMARY KEY,
+    pname VARCHAR(50),
+    price DOUBLE,
+    flag VARCHAR(2),   #是否上架标记为：1表示上架、0表示下架
+    category_id INT,
+    CONSTRAINT products_fk FOREIGN KEY (category_id) REFERENCES category (cid)
+)ENGINE =InnoDB AUTO_INCREMENT=1001 DEFAULT CHARSET=utf8;
+

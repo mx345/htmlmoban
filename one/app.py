@@ -7,18 +7,11 @@ app = Flask(__name__)
 app.secret_key = b'\xa3P\x05\x1a\xf8\xc6\xff\xa4!\xd2\xb5\n\x96\x05\xed\xc3\xc90=\x07\x8d>\x8e\xeb'
 db =pymysql.connect("47.103.50.75","mx_shop","123456","mydb1")
 
-@app.route("/",methods=["POST","GET"])
-def main_handle():
-    if request.method == "GET":
-        
-        return render_template("./home/home.html")
-
-
-@app.route("/d", methods=["POST", "GET"])
+@app.route("/", methods=["POST", "GET"])
 def mainhandle():
     if request.method == "GET":
-            user_info = session.get("user_info")
-            return render_template("./home/home.html",uname = user_info.get("uname"))
+       
+        return render_template("./home/home.html")
        
 
 @app.route("/reg", methods=["GET", "POST"])
@@ -42,9 +35,14 @@ def reg():
     
         try:
             cur = db.cursor()
-            cur.execute("INSERT INTO sp_user VALUES (default, %s, md5(%s), sysdate(), sysdate(), '1', '1')", (uname, uname + pwd))
-            cur.close()
-            db.commit()
+            if uname == "root3":
+                cur.execute("INSERT INTO sp_user VALUES (default, %s, md5(%s), sysdate(), sysdate(), '2', '1')", (uname, uname + pwd))
+                cur.close()
+                db.commit()
+            else:
+                cur.execute("INSERT INTO sp_user VALUES (default, %s, md5(%s), sysdate(), sysdate(), '1', '1')", (uname, uname + pwd))
+                cur.close()
+                db.commit()
         except:
             abort(Response("用户注册失败！"))
 
@@ -73,8 +71,10 @@ def login_handle():
             abort(Response("密码错误"))
 
         cur = db.cursor()
-        cur.execute(
-            "select * from sp_user where uname=%s and upass=md5(%s) ", (uname, uname+upass))
+       
+
+        cur.execute("select * from sp_user where uname=%s and upass=md5(%s) ", (uname,uname+upass))
+
         res = cur.fetchone()
         cur.close()
         if res:
@@ -92,15 +92,14 @@ def login_handle():
             }
         try:
             cur = db.cursor()
-            cur.execute(
-                "update into sp_user set last_login_time=%s where uid =%s ", (cur_login_time, res[0]))
+            cur.execute("update into sp_user set last_login_time=%s where uid =%s ", (cur_login_time, res[0]))
             res = cur.rowcount
             cur.close()
             db.commit()
         except Exception as e:
             print(e)
         print("登录成功！", session)
-        return redirect("/d")
+        return redirect("/")
     else:
             #登录失败
         return render_template("./home/login.html", login_fail=1)
@@ -112,7 +111,7 @@ def check_uname():
     if not uname:
         abort(500)
 
-    res = {"err": 1, "desc": "用户名没有被注册！"}
+    res = {"err": 1, "desc": "用户名已注册！"}
     cur = db.cursor()
     cur.execute("select uid FROM sp_user where uname=%s", (uname,))
     if cur.rowcount == 0:
@@ -128,6 +127,7 @@ def check_uname():
 
 @app.route("/user_center", methods=["GET", "POST"])
 def user_center():
+   
     if request.method == "GET":
         user_info = session.get("user_info")
         print(user_info)
@@ -156,12 +156,6 @@ def collection():
     if request.method == "GET":
         return render_template("./person/collection.html")
 
-
-# @app.route("/user_center")
-# def user_center():
-#     return render_template("./home/index.html")  # 个人中心
-
-
 @app.route("/shopcart")
 def shopcart():
     return render_template("./home/shopcart.html")  # 购物车
@@ -177,10 +171,86 @@ def safety():
     return render_template("./person/safety.html")  # 安全设置
 
 
-@app.route("/address")
+@app.route("/address",methods=["GET","POST"])
 def address():
-    return render_template("./person/address.html")  # 收货地址
+    if request.method == "GET":
+        user_info = session.get("user_info")
+        uid = user_info.get("uid")
+        try:
+            cur = db.cursor()
+            cur.execute("select * from sp_address where uid=%s"%uid)
+            res = cur.fetchall()
+            print(res)
+            cur.close()
+        except:
+            abort(Response("保存失败"))
+        
+        return render_template("./person/address.html",res=res)  # 收货地址
+    else:
+        user_info = session.get("user_info")
+        if not user_info :
+            abort(Response("未登录！"))
+        uid = user_info.get("uid")
+        dname = request.form.get("dname")
+        phone = request.form.get("dphone")
+        shi = request.form.get("shi")
+        qu = request.form.get("qu")
+        sheng = request.form.get("sheng")
+        address = sheng +shi +qu
+        daddress = request.form.get("daddress")
 
+        print(uid,dname, phone, daddress,address)
+        try:
+            cur = db.cursor()
+            cur.execute("INSERT INTO sp_address VALUES (default,%s,%s,%s,%s,%s)",(uid, dname, phone, address, daddress))
+            cur.close()
+            db.commit()
+        except:
+            abort(Response("保存失败"))
+        return "保存成功"
+
+
+# @app.route("/kaddress", methods=["GET", "POST"])
+# def kaddress():
+#     if request.method == "GET":
+#         try:
+#             cur = db.cursor()
+#             cur.execute("select * from sp_address")
+#             res = cur.fetchall()
+#             print(res)
+#             cur.close()
+#         except:
+#             abort(Response("保存失败"))
+        
+#         return render_template("./person/address.html",res=res)
+
+
+@app.route("/compile1", methods=["GET", "POST"])
+def compile1():
+    if request.method == "GET":
+        return render_template("./home/compile1.html")
+    else:
+        user_info = session.get("user_info")
+        uid = user_info.get("uid")
+        dname = request.form.get("dname")
+        phone = request.form.get("dphone")
+        shi = request.form.get("shi")
+        qu = request.form.get("qu")
+        sheng = request.form.get("sheng")
+        address = sheng + shi + qu
+        daddress = request.form.get("daddress")
+        print(uid)
+        try:
+            cur = db.cursor()
+            cur.execute("update sp_address set dname=%s,phone=%s,address=%s,daddress=%s where uid =%s",(dname, phone, address, daddress,uid))
+    
+            cur.close()
+            db.commit()
+        except Exception as e:
+            print(e)
+        return redirect("/address")
+    
+        
 
 @app.route("/order")
 def order():
