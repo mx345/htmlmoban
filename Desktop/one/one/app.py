@@ -18,10 +18,20 @@ def main_handle():
         # print(user_info)
         # if user_info:
         return render_template("./home/home.html")
+    else:
+        so = request.form.get("index_none_header_sysc1")
+        print(so)
+        cur = db.cursor()
+        cur.execute("select * from products where pname=%s limit 0,5",(so,))
+        res = cur.fetchall()
+        print(res)
+        if not res:
+            return "没有查询到任何结果"
+        cur.close()
+        return render_template("./home/search.html", res=res)
 
-
-    elif request.method == "POST":
-        return  render_template("./home/sort.html")
+        # elif request.method == "POST":
+        #     return  render_template("./home/sort.html")
 
 
 # @app.route("/d", methods=["POST", "GET"])
@@ -124,13 +134,25 @@ def login_handle():
             #登录失败
         return render_template("./home/login.html", login_fail=1)
 
+#
+# @app.route("/check_user")
+# def check_user():
+#     user_info = session.get("user_info")
+#     uid = user_info.get("uid")
+#     try:
+#         cur = db.cursor()
+#         cur.execute("select * from sp_address where uid=%s" % uid)
+#         res = cur.fetchall()
+#         print(res)
+#         cur.close()
+#         return render_template("./home/check_user.html", res=res)  # 收货地址
+#
 
 @app.route("/check_uname")
 def check_uname():
     uname = request.args.get("uname")
     if not uname:
         abort(500)
-
     res = {"err": 1, "desc": "用户名没有被注册！"}
     cur = db.cursor()
     cur.execute("select uid FROM sp_user where uname=%s", (uname,))
@@ -184,12 +206,44 @@ def collection():
 #     return render_template("./home/index.html")  # 个人中心
 
 
+
 @app.route("/shopcart")
 def shopcart():
     user_info = session.get("user_info")
-    print(user_info)
+    # print(user_info)
     if user_info:
-     return render_template("./home/shopcart.html",uname=user_info.get("uname"))  # 购物车
+        cur = db.cursor()
+        cur.execute("select * from shop_trolley limit 0,1")
+        res = cur.fetchall()
+
+        cur.close()
+
+        if not res:
+            return render_template("./home/shopcart.html", uname=user_info.get("uname"))
+
+        return render_template("./home/shopcart.html", uname=user_info.get("uname"), res=res)
+
+        # else:
+
+
+# @app.route("/delsp")
+# def delsp():
+#     add = session.get("spca")
+
+#     dname = add.get("pname")[2]
+#     print(dname)
+#     cur = db.cursor()
+#     cur.execute("delete from shop_trolley where tname='%s'" % dname)  # 删除个人地址
+#     cur.close()
+#     db.commit()
+#     return redirect("./home/shopcart.html")
+
+
+
+
+# @app.route("/delshopcart")
+# def delshopcart():
+
 
 
 @app.route("/information",methods=["POST","GET"])
@@ -209,24 +263,6 @@ def information():
          birth = birth_year + "/"+ birth_month +"/" + birtn_day
          phone = request.form.get("phone")
          email = request.form.get("email")
-         # print(uname, type(uname))
-         # print(birth)
-         # print(dname,real_name,sex,type(birth_year),birth_month,birtn_day,phone,email)
-
-         # if not re.match("^([a-zA-Z0-9_@.]){4,20}$", uname):
-         #     return "注册失败，用户名格式错误！"
-         # if not re.match("^[0-9]{1}([a-zA-Z0-9]|[._]){6,15}$", pwd):
-         #     return "密码格式错误"
-         # if pwd != pwd2:
-         #     return "密码输入不一致"
-         # if not re.match("^[1][3,4,5,7,8][0-9]{9}$", phone):
-         #     return "手机格式不对"
-
-         # if not user_reg_login.user_reg(uname, pwd, phone, email):
-         #     # 注册失败
-         #     return "注册失败，用户名已经存在，请换一个用户名试一下！"
-         # else:
-         #     # 注册成功
          try:
              cur = db.cursor()
              cur.execute("INSERT INTO user_information VALUES (DEFAULT ,%s,%s,%s,%s,%s,%s)",(dname,real_name,sex,birth,phone,email))
@@ -302,6 +338,31 @@ def address():
 #         return render_template("./person/address.html",res=res)
 
 
+
+@app.route("/kaddress", methods=["GET", "POST"])
+def kaddress():
+    user_info = session.get("user_info")
+
+    uid = user_info.get("uid")
+    print(uid, type(uid))
+
+    try:
+        cur = db.cursor()
+        cur.execute("select * from sp_address where uid=%s" % uid)
+        res = cur.fetchall()
+        if not res:
+            return render_template("./person/address.html")
+        print(res)
+        cur.close()
+        session["address"] = {
+            "dname": res[0]
+
+        }
+    except:
+        abort(Response("保存失败"))
+    return render_template("./person/address.html", res=res)  # 查看个人地址
+
+
 @app.route("/compile1", methods=["GET", "POST"])
 def compile1():
     if request.method == "GET":
@@ -327,6 +388,19 @@ def compile1():
         except Exception as e:
             print(e)
         return redirect("/address")
+
+
+@app.route("/delete")
+def delete():
+    add = session.get("address")
+
+    dname = add.get("dname")[2]
+    print(dname)
+    cur = db.cursor()
+    cur.execute("delete from sp_address where dname='%s'" % dname)  # 删除个人地址
+    cur.close()
+    db.commit()
+    return redirect("/kaddress")
 
 
 @app.route("/order")
@@ -443,9 +517,29 @@ def orderinfo():
 @app.route("/password")
 def password():
     return render_template("./person/password.html")  # 修改密码
-@app.route("/question")
+
+
+@app.route("/question",methods=["GET","POST"])
 def question():
-    return render_template("./person/question.html")  # 安全问题
+    if request.method == "GET":
+        return render_template("./person/question.html")
+    elif request.method == "POST":
+        issue = request.form.get("question1")
+        answer = request.form.get("answerl")
+        issue1 = request.form.get("question2")
+        answer1 = request.form.get("answer2")
+        print(issue)
+        print(answer)
+        print(issue1)
+        print(answer1)
+        cur = db.cursor()
+        cur.execute("INSERT INTO encrypted VALUES (%s,md5(%s),%s,md5(%s))",
+                    (issue,answer,issue1,answer1))
+        cur.close()
+        db.commit()
+        return render_template("./person/question.html")
+
+
 @app.route("/record")
 def record():
     return render_template("./person/record.html")  #  钱款去向
@@ -462,6 +556,59 @@ def commemtlist():
 @app.route("/billlist")
 def billlist():
     return render_template("./person/billlist.html")
+
+
+
+
+@app.route("/check_user",methods=["GET","POST"])
+def check_user():
+    if request.method == "GET":
+        user_info = session.get("user_info")
+        print(user_info)
+        if user_info:
+            cur = db.cursor()
+            cur.execute("select * from sp_user ")
+            res = cur.fetchall()
+            print(res)
+            cur.close()
+            db.commit()
+            # abort(Response("删除成功"))
+            return render_template("./home/check_user.html",uname=user_info.get("uname"),res=res)  # 收货地址
+
+# @app.route("/delect_user",methods=["GET","POST"])
+# def delect_user():
+#     # if request.method == "GET":
+#     #     return render_template("./home/delect_user.html")
+#     uname = session.get("user_info")
+#     uad = uname.get("uname")
+#     print(uad)
+#     cur = db.cursor()
+#     cur.execute("select * from sp_user")
+#     res = cur.fetchall()
+#     print(res)
+#
+#     cur.close()
+#     for i in res:
+#         str = i[1]
+#     if not uad:
+#         abort(Response("您未登陆"))
+#
+#     if request.method == "POST":
+#         try:
+#             cur = db.cursor()
+#             cur.execute("delect from sp_user where uname = %s",(uname))
+#             cur.close()
+#             db.commit()
+#         except:
+#             abort(Response("删除失败"))
+#         return render_template("./home/check_user")
+#
+# # @app.route("/check_user1",methods=["GRT","POST"])
+# # def delect1_user():
+# #     if request.method
+# #
+# #
+
 
 if __name__ == "__main__":
     app.run(port=80, debug=True)

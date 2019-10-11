@@ -8,7 +8,9 @@
 		<link href="{{url_for("static",filename="AmazeUI-2.4.2/assets/css/amazeui.css")}}" rel="stylesheet" type="text/css" />
 		<link href="{{url_for("static",filename="basic/css/demo.css")}}" rel="stylesheet" type="text/css" />		
 		<link href="{{url_for("static",filename="css/sortstyle.css")}}" rel="stylesheet" type="text/css" />
-		<script src="../AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
+
+		<!--<script src="../AmazeUI-2.4.2/assets/js/jquery.min.js"></script>-->
+		<script src='{{ url_for("static", filename="AmazeUI-2.4.2/assets/js/jquery.min.js") }}'></script>
 	</head>
 
 	<body>

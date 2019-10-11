@@ -46,16 +46,21 @@
 	<div class="hmtop">
 		<!--顶部导航条 -->
 		<div class="am-container header">
-			<ul class="message-l">
+						<ul class="message-l">
 				<div class="topMessage">
 					<div class="menu-hd">
 						{% if session.get("user_info") %}
-					<a id="logout" href="javascript:;">临时走开</a>
-
+					 	<a id="logout" href="javascript:;">临时走开</a>
 						{% else %}
 						<a href="/login" target="_top" class="h">亲，请登录</a>
 						<a href="/reg" target="_top">免费注册</a>
 						{% endif %}
+
+						{% if session.get("user_info")["uname"]=="root3" %}
+						<a href="/check_user" target="_top" class="h">删除用户</a>
+						<a href="/check_user" target="_top" class="h">查看用户信息</a>
+						{% endif %}
+
 					</div>
 				</div>
 			</ul>
@@ -94,8 +99,8 @@
 
 			<div class="search-bar pr">
 				<a name="index_none_header_sysc" href="#"></a>
-				<form>
-					<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索"
+				<form action="/" method="POST">
+					<input id="searchInput" name="index_none_header_sysc1" type="text" placeholder="搜索"
 						autocomplete="off">
 					<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
 				</form>

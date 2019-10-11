@@ -113,41 +113,41 @@
 							<div class="u-progress-bar-inner"></div>
 						</div>
 					</div>
-					<form class="am-form am-form-horizontal">
+					<form class="am-form am-form-horizontal"action="/question" method="post">
 						<div class="am-form-group select">
 							<label for="user-question1" class="am-form-label">问题一</label>
 							<div class="am-form-content">
-								<select data-am-selected>
-									<option value="a" selected>请选择安全问题</option>
-									<option value="b">您最喜欢的颜色是什么？</option>
-									<option value="c">您的故乡在哪里？</option>
+								<select data-am-selected name="question1">
+									<option value="请选择安全问题" selected>请选择安全问题</option>
+									<option value="您最喜欢的颜色是什么">您最喜欢的颜色是什么？</option>
+									<option value="您的故乡在哪里">您的故乡在哪里？</option>
 								</select>
 							</div>
 						</div>
 						<div class="am-form-group">
 							<label for="user-answer1" class="am-form-label">答案</label>
 							<div class="am-form-content">
-								<input type="text" id="user-answer1" placeholder="请输入安全问题答案">
+								<input type="text" id="user-answer1" name="answerl" placeholder="请输入安全问题答案">
 							</div>
 						</div>
 						<div class="am-form-group select">
 							<label for="user-question2" class="am-form-label">问题二</label>
 							<div class="am-form-content">
-								<select data-am-selected>
-									<option value="a" selected>请选择安全问题</option>
-									<option value="b">您最喜欢的颜色是什么？</option>
-									<option value="c">您的故乡在哪里？</option>
+								<select data-am-selected name="question2">
+									<option value="请选择安全问题" selected>请选择安全问题</option>
+									<option value="您最喜欢的颜色是什么">您最喜欢的颜色是什么？</option>
+									<option value="您的故乡在哪里？">您的故乡在哪里？</option>
 								</select>
 							</div>
 						</div>
 						<div class="am-form-group">
 							<label for="user-answer2" class="am-form-label">答案</label>
 							<div class="am-form-content">
-								<input type="text" id="user-answer2" placeholder="请输入安全问题答案">
+								<input type="text" id="user-answer2" name="answer2" placeholder="请输入安全问题答案">
 							</div>
 						</div>
 						<div class="info-btn">
-							<div class="am-btn am-btn-danger">保存修改</div>
+							<input class="am-btn am-btn-danger" type="submit" value="保存">
 						</div>
 
 					</form>

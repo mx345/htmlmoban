@@ -7,15 +7,15 @@
 
 		<title>搜索页面</title>
 
-		<link href="{{url_for("static",filename="AmazeUI-2.4.2/assets/css/amazeui.css")}}" rel="stylesheet" type="text/css" />
-		<link href="{{url_for("static",filenmae="AmazeUI-2.4.2/assets/css/admin.css")}}" rel="stylesheet" type="text/css" />
+		<link href="{{url_for("static", filename="AmazeUI-2.4.2/assets/css/amazeui.css")}}" rel="stylesheet" type="text/css" />
+		<link href="{{url_for("static", filename="AmazeUI-2.4.2/assets/css/admin.css")}}" rel="stylesheet" type="text/css" />
 
-		<link href="{{url_for("static",filename="basic/css/demo.css")}}" rel="stylesheet" type="text/css" />
+		<link href="{{url_for("static", filename="basic/css/demo.css")}}" rel="stylesheet" type="text/css" />
 
-		<link href="{{url_for("static",filename="css/seastyle.css")}}" rel="stylesheet" type="text/css" />
+		<link href="{{url_for("static", filename="css/seastyle.css")}}" rel="stylesheet" type="text/css" />
 
-		<script type="text/javascript" src="../basic/js/jquery-1.7.min.js"></script>
-		<script type="text/javascript" src="../js/script.js"></script>
+		<script type="text/javascript" src="{{url_for("static", filename="basic/js/jquery-1.7.min.js")}}"></script>
+		<script type="text/javascript" src="{{url_for("static", filename="js/script.js")}}"></script>
 	</head>
 
 	<body>
@@ -82,11 +82,11 @@
 						    </div>
 						</div>
 			</div>
-			
-				
+
+
 					<div class="am-g am-g-fixed">
 						<div class="am-u-sm-12 am-u-md-12">
-	                  	<div class="theme-popover">														
+	                  	<div class="theme-popover">
 							<div class="searchAbout">
 								<span class="font-pale">相关搜索：</span>
 								<a title="坚果" href="#">坚果</a>
@@ -110,9 +110,9 @@
 								<div class="clear"></div>
 								<li class="select-list">
 									<dl id="select1">
-										<dt class="am-badge am-round">品牌</dt>	
-									
-										 <div class="dd-conent">										
+										<dt class="am-badge am-round">品牌</dt>
+
+										 <div class="dd-conent">
 											<dd class="select-all selected"><a href="#">全部</a></dd>
 											<dd><a href="#">百草味</a></dd>
 											<dd><a href="#">良品铺子</a></dd>
@@ -121,7 +121,7 @@
 											<dd><a href="#">口水娃</a></dd>
 											<dd><a href="#">考拉兄弟</a></dd>
 										 </div>
-						
+
 									</dl>
 								</li>
 								<li class="select-list">
@@ -148,7 +148,7 @@
 										</div>
 									</dl>
 								</li>
-					        
+
 							</ul>
 							<div class="clear"></div>
                         </div>
@@ -164,20 +164,22 @@
 								<ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 boxes">
 									<li>
 										<div class="i-pic limit">
-											<img src="../../static/images/imgsearch1.jpg" />											
-											<p class="title fl">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
+											{% for i in res %}
+											<img src="../../static/images/1.jpg" />
+											<p class="title fl">{{i[1]}}</p>
 											<p class="price fl">
 												<b>¥</b>
-												<strong>56.90</strong>
+												<strong>{{i[2]}}</strong>
 											</p>
 											<p class="number fl">
 												销量<span>1110</span>
 											</p>
+										{% endfor %}
 										</div>
 									</li>
-									<li>
+									<!-- <li>
 										<div class="i-pic limit">
-											
+
 											<img src="../../static/images/imgsearch1.jpg" />
 											<p class="title fl">手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
 											<p class="price fl">
@@ -191,7 +193,7 @@
 									</li>
 									<li>
 										<div class="i-pic limit">
-											
+
 											<img src="../../static/images/imgsearch1.jpg" />
 											<p class="title fl">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
 											<p class="price fl">
@@ -205,7 +207,7 @@
 									</li>
 									<li>
 										<div class="i-pic limit">
-											
+
 											<img src="../../static/images/imgsearch1.jpg" />
 											<p class="title fl">手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
 											<p class="price fl">
@@ -219,7 +221,7 @@
 									</li>
 									<li>
 										<div class="i-pic limit">
-											
+
 											<img src="../../static/images/imgsearch1.jpg" />
 											<p class="title fl">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
 											<p class="price fl">
@@ -233,7 +235,7 @@
 									</li>
 									<li>
 										<div class="i-pic limit">
-											
+
 											<img src="../../static/images/imgsearch1.jpg" />
 											<p class="title fl">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
 											<p class="price fl">
@@ -247,7 +249,7 @@
 									</li>
 									<li>
 										<div class="i-pic limit">
-											
+
 											<img src="../../static/images/imgsearch1.jpg" />
 											<p class="title fl">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
 											<p class="price fl">
@@ -261,7 +263,7 @@
 									</li>
 									<li>
 										<div class="i-pic limit">
-											
+
 											<img src="../../static/images/imgsearch1.jpg" />
 											<p class="title fl">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
 											<p class="price fl">
@@ -275,7 +277,7 @@
 									</li>
 									<li>
 										<div class="i-pic limit">
-											
+
 											<img src="../../static/images/imgsearch1.jpg" />
 											<p class="title fl">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
 											<p class="price fl">
@@ -289,7 +291,7 @@
 									</li>
 									<li>
 										<div class="i-pic limit">
-											
+
 											<img src="../../static/images/imgsearch1.jpg" />
 											<p class="title fl">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
 											<p class="price fl">
@@ -303,7 +305,7 @@
 									</li>
 									<li>
 										<div class="i-pic limit">
-											
+
 											<img src="../../static/images/imgsearch1.jpg" />
 											<p class="title fl">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
 											<p class="price fl">
@@ -317,7 +319,7 @@
 									</li>
 									<li>
 										<div class="i-pic limit">
-											
+
 											<img src="../../static/images/imgsearch1.jpg" />
 											<p class="title fl">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
 											<p class="price fl">
@@ -376,8 +378,8 @@
 										</p>
 									</div>
 								</li>
-
-							</div>
+							-->
+						    </div>
 							<div class="clear"></div>
 							<!--分页 -->
 							<ul class="am-pagination am-pagination-right">

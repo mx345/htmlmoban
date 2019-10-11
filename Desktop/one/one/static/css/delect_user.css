@@ -1,0 +1,80 @@
+#tip{
+    font-weight: bold;
+
+}
+
+.title_p > p {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+div > .title_ptitle{
+    margin-bottom:-3%;
+}
+
+ul{
+    list-style-type: none;
+}
+
+*[id*= stu]{
+    color: red;
+
+}
+
+table{
+    margin: auto;
+    border: 1px solid silver;
+    border-collapse: collapse;
+}
+
+th,td {
+    border: 1px solid silver;
+    padding: 10px;
+}
+
+*{
+    margin:0;
+    padding: 0;
+}
+
+html {
+    font-size: 10px;
+}
+
+.nav{
+    margin-top: 1%;
+    list-style: none;
+}
+
+.nav > li {
+    float: left;
+}
+
+.nav > li:last-child {
+    float: right;
+}
+
+.nav > li > a {
+    display: block;
+    padding: 10px 20px;
+    background: lightyellow;
+    color: black;
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 1.8em;
+    text-decoration: none;
+    border-right: 2px solid lightcyan;
+}
+.nav > li:first-child > a {
+    border-radius: 10px 0 0 10px;
+}
+.nav > li:last-child > a {
+    border-radius: 0 10px 10px 0;
+    border-right: none;
+}
+
+.nav >li a:hover,.nav>li>a.selected {
+    background: mistyrose;
+}
+
