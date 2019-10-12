@@ -514,9 +514,32 @@ def iogistics():
 @app.route("/orderinfo")
 def orderinfo():
     return render_template("./person/orderinfo.html")  # 订单详情
-@app.route("/password")
-def password():
-    return render_template("./person/password.html")  # 修改密码
+
+
+@app.route("/password", methods=["GET", "POST"])
+def updatapasswd():
+    if request.method == "GET":
+
+        return render_template("person/password.html")
+    else:
+        uname = request.form.get("uname")
+        upass2 = request.form.get("upass2")
+        upass = request.form.get("upass3")
+        if upass != upass2:
+            return "两次密码输入不一一致"
+        # user_info = session.get("user_info")
+        # uid = user_info.get("uid")
+        # print(uid)
+        print(upass2, upass, uname)
+        cur = db.cursor()
+        cur.execute("update sp_user set upass=md5(%s) where uname =%s", (uname + upass, uname))
+        res = cur.rowcount
+        cur.close()
+        db.commit()
+
+        print("修改成功")
+        return redirect("/")
+        # 修改密码
 
 
 @app.route("/question",methods=["GET","POST"])
