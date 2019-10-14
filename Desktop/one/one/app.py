@@ -207,23 +207,39 @@ def collection():
 
 
 
+
 @app.route("/shopcart")
 def shopcart():
     user_info = session.get("user_info")
     # print(user_info)
     if user_info:
-        cur = db.cursor()
-        cur.execute("select * from shop_trolley limit 0,1")
-        res = cur.fetchall()
+        return render_template("./home/shopcart.html", uname=user_info.get("uname"))
+        # cur = db.cursor()
+        # cur.execute("select * from shop_trolley limit 0,3")
+        # res = cur.fetchall()
 
-        cur.close()
+        # cur.close()
 
-        if not res:
-            return render_template("./home/shopcart.html", uname=user_info.get("uname"))
+        # if not res:
+        #     return render_template("./home/shopcart.html", uname=user_info.get("uname"))
 
-        return render_template("./home/shopcart.html", uname=user_info.get("uname"), res=res)
+        # return render_template("./home/shopcart.html", uname=user_info.get("uname"), res=res)
 
         # else:
+
+
+@app.route("/shopcart1")
+def shopcart1():
+    user_info = session.get("user_info")
+    # print(user_info)
+    if user_info:
+        cur = db.cursor()
+        cur.execute("select * from shop_trolley")
+        res = cur.fetchall()
+
+        print(res, type(res))
+        cur.close()
+    return jsonify(res)
 
 
 # @app.route("/delsp")
@@ -238,6 +254,11 @@ def shopcart():
 #     db.commit()
 #     return redirect("./home/shopcart.html")
 
+
+
+
+# @app.route("/delshopcart")
+# def delshopcart():
 
 
 

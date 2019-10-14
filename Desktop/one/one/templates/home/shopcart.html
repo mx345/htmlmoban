@@ -21,7 +21,8 @@
 		<!--<link href="../css/optstyle.css" rel="stylesheet" type="text/css" />-->
         <link href="{{ url_for("static", filename="css/optstyle.css")}}" rel="stylesheet"
 		type="text/css" />
-        <script src="{{ url_for("static", filename="js/jquery.js") }}"></script>
+		<script src="{{ url_for("static", filename="js/jquery.js") }}"></script>
+		<script src="{{ url_for("static", filename="js/shopcart.js") }}"></script>
 		<script>
 		$(document).ready(function () {
 		$("#delete").click(function () {
@@ -41,9 +42,10 @@
 			});
 
 		var c=0;
-
+			var d = 0;
+			var f= 0;
 		$("#result1").click(function(){
-			var a = $("#price2").text()
+			var a = $("#price1").text()
 			console.log(a)
 
 			 var b = $(".text_box").val()
@@ -51,52 +53,63 @@
 
 			c= a*b
 			console.log(c)
-			$("#resul").text(c)
+			$("#resul1").text(c)
 
 
 		})
 
-		$("#result1").click(function () {
+		$("#result2").click(function () {
 				var a = $("#price2").text()
 				console.log(a)
 
-				var b = $(".text_box").val()
+				var b = $(".text_box2").val()
 				console.log(b)
 
-				c = a * b
+				d = a * b
 				console.log(c)
-				$("#resul").text(c)
+				$("#resul2").text(d)
 
 
 			})
 
-			$("#result1").click(function () {
-				var a = $("#price2").text()
+			$("#result3").click(function () {
+				var a = $("#price3").text()
 				console.log(a)
 
-				var b = $(".text_box").val()
+				var b = $(".text_box3").val()
 				console.log(b)
 
-				c = a * b
+				 f= a * b
 				console.log(c)
-				$("#resul").text(c)
+				$("#resul3").text(f)
 
 
 			})
 		console.log(c)
 		$("#jiesuan").click(function() {
-			console.log(c)
-			$("#J_Total").text(c)
+
+
+
+			var e= c+f+d;
+			console.log(e)
+
+
+
+			$("#J_Total").text(e)
 		})
-		// $("#result1").click(function () {
-		// 		var a = $("#price2").text()
-		// 		console.log(a)
-		// 		var b = $(".text_box").val()
-		// 		console.log(b)
-		// 		c= b*a
-		// 		$("#resul").text(c)
-		// 		// alert(a)
-		// 		// alert(b)
+
+			//商品的全选与不选
+			$(".float-bar-wrapper").find(":checkbox").change(function () {
+				//获取全选的checkbox的选中状态
+				is_checked = $(this).prop("checked")
+				//遍历商品的对应的checkbox，设置这些checkbox的选中中状态和全选的checkbox保持一致
+				$(".item-content").find(":checkbox").each(function () {
+					$(this).prop("checked", is_checked)
+				})
+				// 更新页面信息
+				update_page_info()
+			})
+
 
 	}) ;
 
@@ -194,7 +207,7 @@
 							</div> -->
 							<div class="clear"></div>
 							<div class="bundle-main">
-								{% for i in res %}
+
 								<ul class="item-content clearfix" id="del">
 									<li class="td td-chk">
 										<div class="cart-checkbox ">
@@ -205,19 +218,19 @@
 									<li class="td td-item">
 										<div class="item-pic">
 											<a href="#" target="_blank" data-title="美康粉黛醉美东方唇膏口红正品 持久保湿滋润防水不掉色护唇彩妆" class="J_MakePoint" data-point="tbcart.8.12">
-												<img src="../../static/images/QQ图片.jpg" class="itempic J_ItemImg"></a>
+												<img src="" class="itempic J_ItemImg" id="123"></a>
 										</div>
 										<div class="item-info">
 											<div class="item-basic-info">
-												<a href="#" target="_blank" title="美康粉黛醉美唇膏 持久保湿滋润防水不掉色" class="item-title J_MakePoint" data-point="tbcart.8.11">{{i[2]}}</a>
+												<a href="#" target="_blank" title="美康粉黛醉美唇膏 持久保湿滋润防水不掉色" id="jk" class="item-title J_MakePoint" data-point="tbcart.8.11"></a>
 											</div>
 										</div>
 									</li>
 									<li class="td td-info">
 										<div class="item-props item-props-can">
-											<span class="sku-line1">{{i[5]}}</span>
-											<span class="sku-line">包装:{{i[6]}}</span>
-											<span tabindex="0" class="btn-edit-sku theme-login">修改</span>
+											<span class="sku-line1"  id="jk1"></span>
+											<span class="sku-line"  id="jk2">包装</span>
+											<span tabindex="0" class="btn-edit-sku theme-login"></span>
 											<i class="theme-login am-icon-sort-desc"></i>
 										</div>
 									</li>
@@ -225,10 +238,10 @@
 										<div class="item-price price-promo-promo">
 											<div class="price-content">
 												<div class="price-line">
-													<em class="price-original" id="price">{{i[3]}}</em>
+													<em class="price-original"></em>
 												</div>
 												<div class="price-line">
-													<p class="J_Price price-now" tabindex="0" id="price2">{{i[4]}}</p>
+													<p class="J_Price price-now" tabindex="0" id="price1"></p>
 												</div>
 											</div>
 										</div>
@@ -247,7 +260,7 @@
 									</li>
 									<li class="td td-sum">
 										<div class="td-inner">
-											<em tabindex="0" class="J_ItemSum number" id="resul" ></em>
+											<em tabindex="0" class="J_ItemSum number" id="resul1" ></em>
 										</div>
 									</li>
 									<li class="td td-op">
@@ -294,7 +307,7 @@
 													<em class="price-original">78.00</em>
 												</div>
 												<div class="price-line">
-													<em class="J_Price price-now" tabindex="0">39.00</em>
+													<em class="J_Price price-now"id="price2" tabindex="0" >39.00</em>
 												</div>
 											</div>
 										</div>
@@ -304,15 +317,16 @@
 											<div class="item-amount ">
 												<div class="sl">
 													<input class="min am-btn" name="" type="button" value="-" />
-													<input class="text_box" name="" type="text" value="3" style="width:30px;" />
+													<input class="text_box2" name="" type="text" value="3" style="width:30px;" />
 													<input class="add am-btn" name="" type="button" value="+" />
+													<input type="button" id="result2" value="确认">
 												</div>
 											</div>
 										</div>
 									</li>
 									<li class="td td-sum">
 										<div class="td-inner">
-											<em tabindex="0" class="J_ItemSum number">117.00</em>
+											<em tabindex="0" class="J_ItemSum number" id="resul2">117.00</em>
 										</div>
 									</li>
 									<li class="td td-op">
@@ -377,7 +391,7 @@
 													<em class="price-original">78.00</em>
 												</div>
 												<div class="price-line">
-													<em class="J_Price price-now" tabindex="0">39.00</em>
+													<em class="J_Price price-now"id="price3" tabindex="0" >39.00</em>
 												</div>
 											</div>
 										</div>
@@ -387,15 +401,16 @@
 											<div class="item-amount ">
 												<div class="sl">
 													<input class="min am-btn" name="" type="button" value="-" />
-													<input class="text_box" name="" type="text" value="3" style="width:30px;" />
+													<input class="text_box3" name="" type="text" value="3" style="width:30px;" />
 													<input class="add am-btn" name="" type="button" value="+" />
+													<input type="button" id="result3" value="确认">
 												</div>
 											</div>
 										</div>
 									</li>
 									<li class="td td-sum">
 										<div class="td-inner">
-											<em tabindex="0" class="J_ItemSum number">117.00</em>
+											<em tabindex="0" class="J_ItemSum number" id="resul3">117.00</em>
 										</div>
 									</li>
 									<li class="td td-op">
@@ -411,7 +426,7 @@
 						</div>
 					</tr>
 				</div>
-			{% endfor %}
+
 				<div class="clear"></div>
 
 				<div class="float-bar-wrapper">
